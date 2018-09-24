@@ -26,7 +26,7 @@ components:
         - python
         - -m
         - SimpleHttpServer
-        - 8888
+        - "8888"
     ports:
       "8888":
         protocol: TCP
