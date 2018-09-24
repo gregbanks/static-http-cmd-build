@@ -1,0 +1,38 @@
+type: v1/system
+
+node_pools:
+  main:
+    instance_type: t2.large
+    num_instances: 1
+
+components:
+  www:
+    type: v1/service
+    build:
+      type: command_build
+      source:
+        type: git_repository
+        url: https://github.com/gregbanks/static-http-cmd-build.git
+        tag: 0.0.1
+      base_image: 
+        repository: library/ubuntu
+        tag: 18.04
+      command:
+        - apt-get update &&
+        - apt-get install -y python python-dev python-pip python-virtualenv &&
+        - rm -rf /var/lib/apt/lists/*
+    exec:
+      command:
+        - python
+        - -m
+        - SimpleHttpServer
+        - ${PORT}
+      environment:
+        PORT: 8888
+    ports:
+      "8888":
+        protocol: TCP
+        external_access:
+          public: true
+    node_pool: /:main
+    num_instances: 1
