@@ -20,7 +20,14 @@ components:
       command:
         - apt-get update &&
         - apt-get install -y python python-dev python-pip python-virtualenv &&
-        - rm -rf /var/lib/apt/lists/*
+        - rm -rf /var/lib/apt/lists/* &&
+        - echo "${INDEX}" > index.html &&
+        - echo "${FOO}" > foo.html &&
+        - echo "${BAR}" > bar.html
+      environment:
+        INDEX: "<html><h1>Hello index</h1></html>"
+        FOO: "<html><h1>Hello foo</h1></html>"
+        BAR: "<html><h1>Hello bar</h1></html>"
     exec:
       command:
         - python
