@@ -13,10 +13,10 @@ components:
       source:
         type: git_repository
         url: https://github.com/gregbanks/static-http-cmd-build.git
-        tag: 0.0.1
+        tag: "0.0.1"
       base_image: 
         repository: library/ubuntu
-        tag: 18.04
+        tag: "18.04"
       command:
         - apt-get update &&
         - apt-get install -y python python-dev python-pip python-virtualenv &&
